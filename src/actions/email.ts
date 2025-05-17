@@ -59,23 +59,7 @@ export async function generateVerificationEmailHtml(
   <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#f9fafb">
     <tr>
       <td align="center" style="padding: 40px 0;">
-        <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #7e22ce; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); max-width: 100%;">
-          <!-- Header -->
-          <tr>
-            <td style="background-color: #000000; padding: 24px 40px; text-align: center;">
-              <h1 style="color: #7e22ce; margin: 0; font-size: 24px; font-weight: 600;">Your App Name</h1>
-            </td>
-          </tr>
-          <!-- Content -->
-          <tr>
-            <td style="padding: 40px;">
-              <h2 style="color: #1a1a1a; font-size: 20px; font-weight: 600; margin-top: 0; margin-bottom: 16px;">Verify your email address</h2>
-              <p style="color: #666666; font-size: 16px; line-height: 1.6; margin-bottom: 24px;">Hello ${userName},</p>
-              <p style="color: #666666; font-size: 16px; line-height: 1.6; margin-bottom: 24px;">Thanks for signing up! Please verify your email address to complete your registration and secure your account.</p>
-              <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                  <td>
-                    <a href="${verificationUrl}" target="_blank" style="display: inline-block; background-color: #000000; color: #7e22ce; font-size: 16px; font-weight: 500; text-decoration: none; padding: 12px 24px; border-radius: 6px; text-align: center;">Verify Email Address</a>
+                <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); max-width: 100%;">          <!-- Header -->          <tr>            <td style="background-color: #7e22ce; padding: 24px 40px; text-align: center;">              <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 600;">Auto Brief</h1>            </td>          </tr>          <!-- Content -->          <tr>            <td style="padding: 40px;">              <h2 style="color: #1a1a1a; font-size: 20px; font-weight: 600; margin-top: 0; margin-bottom: 16px;">Verify your email address</h2>              <p style="color: #666666; font-size: 16px; line-height: 1.6; margin-bottom: 24px;">Hello ${userName},</p>              <p style="color: #666666; font-size: 16px; line-height: 1.6; margin-bottom: 24px;">Thanks for signing up! Please verify your email address to complete your registration and secure your account.</p>              <table width="100%" border="0" cellspacing="0" cellpadding="0">                <tr>                  <td>                    <a href="${verificationUrl}" target="_blank" style="display: inline-block; background-color: #7e22ce; color: #ffffff; font-size: 16px; font-weight: 500; text-decoration: none; padding: 12px 24px; border-radius: 6px; text-align: center;">Verify Email Address</a>
                   </td>
                 </tr>
               </table>
@@ -112,23 +96,7 @@ export async function generatePasswordResetEmailHtml(resetUrl: string, userName:
   <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#f9fafb">
     <tr>
       <td align="center" style="padding: 40px 0;">
-        <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #7e22ce; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); max-width: 100%;">
-          <!-- Header -->
-          <tr>
-            <td style="background-color: #000000; padding: 24px 40px; text-align: center;">
-              <h1 style="color: #7e22ce; margin: 0; font-size: 24px; font-weight: 600;">Auto Brief</h1>
-            </td>
-          </tr>
-          <!-- Content -->
-          <tr>
-            <td style="padding: 40px;">
-              <h2 style="color: #1a1a1a; font-size: 20px; font-weight: 600; margin-top: 0; margin-bottom: 16px;">Reset your password</h2>
-              <p style="color: #666666; font-size: 16px; line-height: 1.6; margin-bottom: 24px;">Hello ${userName},</p>
-              <p style="color: #666666; font-size: 16px; line-height: 1.6; margin-bottom: 24px;">We received a request to reset your password. Click the button below to create a new password:</p>
-              <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                  <td>
-                    <a href="${resetUrl}" target="_blank" style="display: inline-block; background-color: #000000; color: #7e22ce; font-size: 16px; font-weight: 500; text-decoration: none; padding: 12px 24px; border-radius: 6px; text-align: center;">Reset Password</a>
+                <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); max-width: 100%;">          <!-- Header -->          <tr>            <td style="background-color: #7e22ce; padding: 24px 40px; text-align: center;">              <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 600;">Auto Brief</h1>            </td>          </tr>          <!-- Content -->          <tr>            <td style="padding: 40px;">              <h2 style="color: #1a1a1a; font-size: 20px; font-weight: 600; margin-top: 0; margin-bottom: 16px;">Reset your password</h2>              <p style="color: #666666; font-size: 16px; line-height: 1.6; margin-bottom: 24px;">Hello ${userName},</p>              <p style="color: #666666; font-size: 16px; line-height: 1.6; margin-bottom: 24px;">We received a request to reset your password. Click the button below to create a new password:</p>              <table width="100%" border="0" cellspacing="0" cellpadding="0">                <tr>                  <td>                    <a href="${resetUrl}" target="_blank" style="display: inline-block; background-color: #7e22ce; color: #ffffff; font-size: 16px; font-weight: 500; text-decoration: none; padding: 12px 24px; border-radius: 6px; text-align: center;">Reset Password</a>
                   </td>
                 </tr>
               </table>
@@ -168,23 +136,7 @@ export async function generateEmailChangeVerificationHtml(
   <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#f9fafb">
     <tr>
       <td align="center" style="padding: 40px 0;">
-        <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #7e22ce; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); max-width: 100%;">
-          <!-- Header -->
-          <tr>
-            <td style="background-color: #000000; padding: 24px 40px; text-align: center;">
-              <h1 style="color: #7e22ce; margin: 0; font-size: 24px; font-weight: 600;">Auto Brief</h1>
-            </td>
-          </tr>
-          <!-- Content -->
-          <tr>
-            <td style="padding: 40px;">
-              <h2 style="color: #1a1a1a; font-size: 20px; font-weight: 600; margin-top: 0; margin-bottom: 16px;">Verify your new email address</h2>
-              <p style="color: #666666; font-size: 16px; line-height: 1.6; margin-bottom: 24px;">Hello ${userName},</p>
-              <p style="color: #666666; font-size: 16px; line-height: 1.6; margin-bottom: 24px;">You recently requested to change your email address. Please click the button below to verify this new email address:</p>
-              <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                  <td>
-                    <a href="${verificationUrl}" target="_blank" style="display: inline-block; background-color: #000000; color: #7e22ce; font-size: 16px; font-weight: 500; text-decoration: none; padding: 12px 24px; border-radius: 6px; text-align: center;">Verify New Email</a>
+                <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); max-width: 100%;">          <!-- Header -->          <tr>            <td style="background-color: #7e22ce; padding: 24px 40px; text-align: center;">              <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 600;">Auto Brief</h1>            </td>          </tr>          <!-- Content -->          <tr>            <td style="padding: 40px;">              <h2 style="color: #1a1a1a; font-size: 20px; font-weight: 600; margin-top: 0; margin-bottom: 16px;">Verify your new email address</h2>              <p style="color: #666666; font-size: 16px; line-height: 1.6; margin-bottom: 24px;">Hello ${userName},</p>              <p style="color: #666666; font-size: 16px; line-height: 1.6; margin-bottom: 24px;">You recently requested to change your email address. Please click the button below to verify this new email address:</p>              <table width="100%" border="0" cellspacing="0" cellpadding="0">                <tr>                  <td>                    <a href="${verificationUrl}" target="_blank" style="display: inline-block; background-color: #7e22ce; color: #ffffff; font-size: 16px; font-weight: 500; text-decoration: none; padding: 12px 24px; border-radius: 6px; text-align: center;">Verify New Email</a>
                   </td>
                 </tr>
               </table>

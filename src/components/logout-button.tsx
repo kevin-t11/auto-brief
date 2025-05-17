@@ -3,6 +3,7 @@
 import { authClient } from '@/auth-client';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { Button } from './ui/button';
 
 const LogoutButton = () => {
@@ -17,15 +18,21 @@ const LogoutButton = () => {
           onSuccess: () => {
             router.push('/sign-in');
             router.refresh();
+          },
+          onError: (error) => {
+            console.error('Error logging out:', error);
+            toast.error('Failed to log out. Please try again.');
           }
         }
       });
     } catch (error) {
-      console.error('Error logging out:', error);
+      console.error('Exception during logout:', error);
+      toast.error('An error occurred while logging out');
     } finally {
       setIsLoading(false);
     }
   };
+
   return (
     <Button disabled={isLoading} onClick={handleLogout}>
       Logout

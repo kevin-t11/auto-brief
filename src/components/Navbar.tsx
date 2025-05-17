@@ -1,11 +1,14 @@
-import { authClient } from '@/auth-client';
+import { auth } from '@/auth';
 import { Button } from '@/components/ui/button';
+import { headers } from 'next/headers';
 import Link from 'next/link';
 import LogoutButton from './logout-button';
 import { Logo } from './ui/logo';
 
 const Navbar = async () => {
-  const session = await authClient.getSession();
+  const session = await auth.api.getSession({
+    headers: await headers()
+  });
   return (
     <div className="flex justify-between items-center p-3 mx-auto border border-gray-50 shadow-sm mb-8">
       <div>
@@ -14,7 +17,7 @@ const Navbar = async () => {
         </Link>
       </div>
       <div>
-        {session?.data?.user ? (
+        {session?.user ? (
           <LogoutButton />
         ) : (
           <div className="flex gap-2">
