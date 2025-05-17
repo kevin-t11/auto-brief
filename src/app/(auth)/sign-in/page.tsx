@@ -230,6 +230,11 @@ export default function SignIn() {
                 </FormItem>
               )}
             />
+            <div className="text-right">
+              <Link href="/forgot-password" className="text-sm text-purple-700 hover:underline">
+                Forgot password?
+              </Link>
+            </div>
             <Button type="submit" className="w-full" disabled={pendingCredentials}>
               {pendingCredentials ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
               Sign In

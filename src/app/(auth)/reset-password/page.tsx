@@ -36,11 +36,14 @@ function ResetPasswordContent() {
 
   const onSubmit = async (data: z.infer<typeof resetPasswordSchema>) => {
     setIsPending(true);
+    const token = searchParams.get('token') || undefined;
     const { error } = await authClient.resetPassword({
-      newPassword: data.password
+      newPassword: data.password,
+      token
     });
     if (error) {
       toast.error(error.message ?? 'Something went wrong.');
+      console.log('Error', error);
     } else {
       toast.success('Password reset successful. Login to continue.');
       router.push('/sign-in');
