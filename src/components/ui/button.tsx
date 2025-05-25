@@ -20,7 +20,7 @@ const buttonVariants = cva(
         ghost:
           'hover:bg-gradient-to-r hover:from-purple-100/50 hover:to-purple-200/50 hover:text-purple-800 dark:hover:from-purple-900/50 dark:hover:to-purple-800/50 dark:hover:text-purple-200',
         link: 'text-purple-600 underline-offset-4 hover:underline dark:text-purple-400',
-        muted: 'bg-muted text-muted-foreground hover:bg-muted/80',
+        muted: 'bg-muted text-muted-foreground hover:bg-muted/80'
       },
       size: {
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',
@@ -28,13 +28,13 @@ const buttonVariants = cva(
         sm: 'h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5',
         lg: 'h-10 rounded-md px-6 has-[>svg]:px-4',
         xl: 'h-12 rounded-md px-8 has-[>svg]:px-6',
-        icon: 'size-9',
-      },
+        icon: 'size-9'
+      }
     },
     defaultVariants: {
       variant: 'default',
-      size: 'default',
-    },
+      size: 'default'
+    }
   }
 );
 

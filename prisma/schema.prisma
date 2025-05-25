@@ -49,6 +49,7 @@ model Account {
   refreshToken          String?
   accessTokenExpiresAt  DateTime?
   refreshTokenExpiresAt DateTime?
+  idToken               String?
   scope                 String?
   password              String?
   createdAt             DateTime  @default(now())

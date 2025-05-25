@@ -13,7 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <body className={`${autoBriefFont.className} antialiased bg-background text-foreground`}>
         <main className="min-h-screen">{children}</main>
-        <Toaster closeButton />
+        <Toaster />
       </body>
     </html>
   );

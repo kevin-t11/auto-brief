@@ -68,7 +68,8 @@ module.exports = {
       },
       fontFamily: {
         sans: ['var(--font-auto-brief)'],
-        classic: ['var(--font-auto-brief-classic)']
+        classic: ['var(--font-auto-brief-classic)'],
+        shadow: ['var(--font-shadow-into-light)']
       },
       borderRadius: {
         lg: 'var(--radius)',

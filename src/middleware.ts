@@ -2,7 +2,7 @@ import type { Session } from '@/auth';
 import { betterFetch } from '@better-fetch/fetch';
 import { NextResponse, type NextRequest } from 'next/server';
 
-const authRoutes = ['/sign-in', '/sign-up'];
+const authRoutes = ['/sign-in', '/sign-up', '/'];
 const passwordRoutes = ['/reset-password', '/forgot-password'];
 const adminRoutes = ['/admin'];
 
@@ -28,7 +28,7 @@ export default async function authMiddleware(request: NextRequest) {
   }
 
   if (isAuthRoute || isPasswordRoute) {
-    return NextResponse.redirect(new URL('/', request.url));
+    return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 
   if (isAdminRoute && session?.user.role !== 'admin') {

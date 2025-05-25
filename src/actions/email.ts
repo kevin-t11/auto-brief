@@ -1,8 +1,17 @@
 'use server';
 
-import { Resend } from 'resend';
+import prisma from '@/lib/prisma';
+import sgMail from '@sendgrid/mail';
 
-const resend = new Resend(process.env.RESEND_API_KEY!);
+if (!process.env.SENDGRID_API_KEY) {
+  throw new Error('SENDGRID_API_KEY environment variable is not set');
+}
+
+if (!process.env.EMAIL_FROM) {
+  throw new Error('EMAIL_FROM environment variable is not set');
+}
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 export async function sendEmail({
   to,
@@ -15,31 +24,89 @@ export async function sendEmail({
   text?: string;
   html?: string;
 }) {
-  if (!process.env.RESEND_API_KEY) {
-    throw new Error('RESEND_API_KEY environment variable is not set');
-  }
-  if (!process.env.EMAIL_FROM) {
-    throw new Error('EMAIL_FROM environment variable is not set');
+  if (!text && !html) {
+    throw new Error('Either text or html content must be provided to send an email.');
   }
 
   try {
-    const { data, error } = await resend.emails.send({
-      from: process.env.EMAIL_FROM,
+    // Create the email message
+    const msg = {
       to: to.toLowerCase().trim(),
+      from: process.env.EMAIL_FROM!,
       subject: subject.trim(),
-      text: text ? text.trim() : '',
-      html
-    });
+      text: text?.trim() || 'Please view this email in an HTML-compatible email client.',
+      html: html || undefined
+    };
 
-    if (error) {
-      console.error('Error sending email:', error);
-      throw new Error(`Failed to send email: ${error.message}`);
+    await sgMail.send(msg);
+    return { success: true };
+  } catch (error: unknown) {
+    console.error('Error sending email:', error instanceof Error ? error.message : error);
+    throw new Error(
+      `Failed to send email: ${error instanceof Error ? error.message : String(error)}`
+    );
+  }
+}
+
+export async function resendVerificationEmail(email: string) {
+  'use server';
+
+  try {
+    if (!email) {
+      throw new Error('Email address is required');
     }
 
-    return { success: true, data };
-  } catch (error) {
-    console.error('Exception sending email:', error);
-    throw error;
+    // Check if user exists
+    const user = await prisma.user.findUnique({
+      where: { email }
+    });
+
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    if (user.emailVerified) {
+      throw new Error('Email is already verified');
+    }
+
+    // Generate a verification token
+    const token = Buffer.from(`${email}:${Date.now()}`).toString('base64');
+
+    // Store the token in the database using the Verification model
+    await prisma.verification.upsert({
+      where: {
+        id: `email-verification-${email}`
+      },
+      update: {
+        value: token,
+        expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000) // 24 hours from now
+      },
+      create: {
+        id: `email-verification-${email}`,
+        identifier: email,
+        value: token,
+        expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000) // 24 hours from now
+      }
+    });
+
+    // Create verification URL
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL;
+    const verificationUrl = `${appUrl}/api/auth/verify-email?token=${token}&callbackURL=${process.env.EMAIL_VERIFICATION_CALLBACK_URL || '/dashboard'}`;
+
+    // Send verification email
+    await sendEmail({
+      to: email,
+      subject: 'Verify your email address',
+      html: await generateVerificationEmailHtml(verificationUrl, user.name || undefined),
+      text: `Click the link to verify your email: ${verificationUrl}`
+    });
+
+    return { success: true };
+  } catch (error: unknown) {
+    console.error('Error resending verification email:', error);
+    throw new Error(
+      `Failed to resend verification email: ${error instanceof Error ? error.message : String(error)}`
+    );
   }
 }
 
@@ -71,7 +138,7 @@ export async function generateVerificationEmailHtml(
           <!-- Footer -->
           <tr>
             <td style="background-color: #f3f4f6; padding: 24px 40px; text-align: center;">
-              <p style="color: #6b7280; font-size: 14px; margin: 0;">© ${new Date().getFullYear()} Your App Name. All rights reserved.</p>
+              <p style="color: #6b7280; font-size: 14px; margin: 0;">© ${new Date().getFullYear()} Auto Brief. All rights reserved.</p>
             </td>
           </tr>
         </table>
