@@ -20,10 +20,10 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: bun install
 
       - name: Check linting
-        run: npm run lint
+        run: bun run lint
 
       - name: Check formatting
-        run: npx prettier --check .
+        run: bun run format
