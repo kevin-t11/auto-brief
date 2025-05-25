@@ -1,9 +1,12 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-echo "🔍 Running lint and format checks..."
-if bun x lint-staged; then
+echo "🔍 Running lint and format checks with Bun..."
+
+# Use Bun to run lint-staged
+if bun x lint-staged && bun run format:check; then
   echo "✅ All checks passed!"
 else
-  echo "⚠️ Lint or format issues detected, but commit will proceed."
+  echo "❌ Lint or format checks failed. Commit aborted."
+  exit 1
 fi
