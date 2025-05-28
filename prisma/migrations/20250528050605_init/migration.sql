@@ -41,6 +41,7 @@ CREATE TABLE "Account" (
     "refreshToken" TEXT,
     "accessTokenExpiresAt" TIMESTAMP(3),
     "refreshTokenExpiresAt" TIMESTAMP(3),
+    "idToken" TEXT,
     "scope" TEXT,
     "password" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
