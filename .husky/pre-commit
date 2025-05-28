@@ -3,9 +3,18 @@
 
 echo "🔍 Running lint and format checks with Bun..."
 
-# Use Bun to run lint-staged
+# Run lint-staged and format checks
 if bun x lint-staged && bun run format:check; then
-  echo "✅ All checks passed!"
+  echo "✅ Lint and format checks passed!"
+  
+  echo "📦 Building the project with Bun..."
+  if bun run build; then
+    echo "✅ Build passed!"
+  else
+    echo "❌ Build failed. Commit aborted."
+    exit 1
+  fi
+
 else
   echo "❌ Lint or format checks failed. Commit aborted."
   exit 1
